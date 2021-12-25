@@ -1,4 +1,7 @@
 (require 'org)
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(package-initialize)
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (load-theme 'dracula t)
@@ -34,12 +37,12 @@
 
 (setq inhibit-startup-screen t)
 (setq inhibit-startup-echo-area-message t)
-(setq inhibit-startup-message t)   ;; Show/hide startup page
-(setq initial-scratch-message nil) ;; Show/hide *scratch* buffer message
-(menu-bar-mode 0)                  ;; Show/hide menubar
-(tool-bar-mode 0)                  ;; Show/hide toolbar
-(tooltip-mode  0)                  ;; Show/hide tooltip
-(scroll-bar-mode 0)                ;; Show/hide scrollbar
+(setq inhibit-startup-message t)
+(setq initial-scratch-message nil)
+(menu-bar-mode 0)
+(tool-bar-mode 0)
+(tooltip-mode  0)
+(scroll-bar-mode 0)
 
 (defun mode-line-render (left right)
   "Return a string of `window-width' length containing left, and

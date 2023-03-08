@@ -1,108 +1,77 @@
-(require 'org)
+;; Remover boas vindas
+(setq inhibit-startup-screen t)
+(defun display-startup-echo-area-message ()
+  (message ""))
+(setq initial-scratch-message "")
+
+;; Remover menus
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+
+;; Remover barra de rolagem
+(scroll-bar-mode -1)
+
+;; Números nas linhas
+(global-linum-mode t)
+
+;; Definir fonte
+(set-face-attribute 'default nil :font "monospace" :height 140)
+
+;; Fechar colchetes automaticamente
+(electric-pair-mode t)
+
+;; Desativar arquivos de backup
+(setq make-backup-files nil)
+
+;; Ativar abas
+(tab-bar-mode t)
+
+;; Pacotes
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(setq package-enable-at-startup nil)
+
+; MELPA
+(add-to-list 'package-archives
+	     '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+
 (package-initialize)
 
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(use-package try
+  :ensure t)
+
+(use-package dracula-theme
+  :ensure t)
+
+(use-package which-key
+  :ensure t
+  :config
+  (progn
+    (which-key-mode)))
+
+(use-package pdf-tools
+  :ensure t
+  :config
+  (progn
+    (pdf-loader-install)))
+
+;; Definir tema
 (load-theme 'dracula t)
 
-(setq-default indent-tabs-mode nil)
-(setq make-backup-files nil)
-(setq org-display-inline-images t)
-(setq org-redisplay-inline-images t)
-(setq org-startup-with-inline-images "inlineimages")
-(set-frame-parameter (selected-frame)'alpha '(95 . 95))
-
-(setq default-frame-alist
-      (append (list '(width . 72) '(height . 40))))
-
-(setq org-confirm-elisp-link-function nil)
-				  
-(global-set-key [(control z)] 'undo)
-(global-set-key "\C-x\C-x"    'execute-extended-command)
-
-(set-frame-font "JetBrainsMono Nerd Font 10")
-
-(set-frame-parameter (selected-frame) 'internal-border-width 20)
-(setq x-underline-at-descent-line t)
-(setq initial-major-mode 'text-mode)
-(setq-default line-spacing 0)
-(set-default 'cursor-type  '(hbar . 2))
-(blink-cursor-mode 0)
-(fringe-mode '(0 . 0))
-
-(setq frame-background-mode 'dark)
-(set-background-color "#000000")
-(set-foreground-color "#ffffff")
-
-(setq inhibit-startup-screen t)
-(setq inhibit-startup-echo-area-message t)
-(setq inhibit-startup-message t)
-(setq initial-scratch-message nil)
-(menu-bar-mode 0)
-(tool-bar-mode 0)
-(tooltip-mode  0)
-(scroll-bar-mode 0)
-
-(defun mode-line-render (left right)
-  "Return a string of `window-width' length containing left, and
-   right aligned respectively."
-  (let* ((available-width (- (window-total-width) (length left) )))
-    (format (format "%%s %%%ds" available-width) left right)))
-
-(setq-default header-line-format
-  '(:eval (mode-line-render
-
-   (format-mode-line
-    (list
-     (propertize "File " 'face `(:weight regular))
-     "%b"
-     '(:eval (if (and buffer-file-name (buffer-modified-p))
-         (propertize "(modified)" 
-		     'face `(:weight light
-			     :foreground "#ffffff"))))))
-   (format-mode-line
-    (propertize "%3l:%2c"
-	'face `(:weight light :foreground "#ffffff"))))))
-
-(set-face-attribute 'region nil
-		    :background "#666666")
-(set-face-attribute 'highlight nil
-		    :foreground "white"
-		    :background "#000000")
-(set-face-attribute 'org-level-1 nil
-		    :foreground "white"
-		    :weight 'regular)
-(set-face-attribute 'org-link nil
-		    :underline nil
-		    :foreground "white blue")
-(set-face-attribute 'org-verbatim nil
-		    :foreground "white blue")
-(set-face-attribute 'bold nil
- 		    :foreground "#666666"
-		    :weight 'regular)
-(set-face-attribute 'minibuffer-prompt nil
-		    :foreground "white")
-
-(setq-default mode-line-format "")
-
-(set-face-attribute 'header-line nil
-;;                  :weight 'regular
-		    :height 140
-                    :underline "white"
-                    :foreground "white"
-		    :background "black"
-                    :box `(:line-width 3 :color "black" :style nil))
-(set-face-attribute 'mode-line nil
-                    :height 10
-                    :underline "white"
-                    :background "black"
-		    :foreground "white"
-                    :box nil)
-(set-face-attribute 'mode-line-inactive nil
-                    :box nil
-                    :inherit 'mode-line)
-(set-face-attribute 'mode-line-buffer-id nil 
-                    :weight 'light)
-
-(setq org-hide-emphasis-markers t)
+;; MELPA stuff
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages '(use-package))
+ '(warning-suppress-types '((pdf-view))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

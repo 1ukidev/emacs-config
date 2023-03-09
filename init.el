@@ -26,6 +26,11 @@
 ;; Ativar abas
 (tab-bar-mode t)
 
+;; org-mode
+(setq org-hide-emphasis-markers t)
+(setq org-image-actual-width nil)
+(add-hook 'text-mode-hook 'visual-line-mode)
+
 ;; Pacotes
 (require 'package)
 (setq package-enable-at-startup nil)
@@ -57,6 +62,9 @@
   :config
   (progn
     (pdf-loader-install)))
+
+(use-package org-bullets
+  :hook (org-mode . org-bullets-mode))
 
 ;; Definir tema
 (load-theme 'dracula t)

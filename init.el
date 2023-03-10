@@ -26,6 +26,10 @@
 ;; Ativar abas
 (tab-bar-mode t)
 
+;; Ativar transparência
+(set-frame-parameter (selected-frame) 'alpha '(90 90))
+(add-to-list 'default-frame-alist '(alpha 90 90))
+
 ;; org-mode
 (setq org-hide-emphasis-markers t)
 (setq org-image-actual-width nil)

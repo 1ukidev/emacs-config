@@ -15,7 +15,8 @@
 (global-linum-mode t)
 
 ;; Definir fonte
-(set-face-attribute 'default nil :font "monospace" :height 140)
+(set-face-attribute 'default nil :font "monospace" :height 120)
+(setq-default cursor-type 'bar)
 
 ;; Fechar colchetes automaticamente
 (electric-pair-mode t)
@@ -24,7 +25,7 @@
 (setq make-backup-files nil)
 
 ;; Ativar abas
-(tab-bar-mode t)
+; (tab-bar-mode t)
 
 ;; Ativar transparência
 (set-frame-parameter (selected-frame) 'alpha '(90 90))
@@ -41,7 +42,7 @@
 
 ; MELPA
 (add-to-list 'package-archives
-	     '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+	     '("melpa" . "https://melpa.org/packages/") t)
 
 (package-initialize)
 
@@ -52,8 +53,13 @@
 (use-package try
   :ensure t)
 
-(use-package dracula-theme
-  :ensure t)
+(use-package almost-mono-themes
+  :ensure t
+  :config
+  (load-theme 'almost-mono-black t))
+  ;; (load-theme 'almost-mono-gray t)
+  ;; (load-theme 'almost-mono-cream t)
+  ;; (load-theme 'almost-mono-white t)
 
 (use-package which-key
   :ensure t
@@ -70,16 +76,13 @@
 (use-package org-bullets
   :hook (org-mode . org-bullets-mode))
 
-;; Definir tema
-(load-theme 'dracula t)
-
 ;; MELPA stuff
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(use-package))
+ '(package-selected-packages '(almost-mono-theimes use-package))
  '(warning-suppress-types '((pdf-view))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

@@ -2,6 +2,6 @@
 
 # Emacs configuration
 ## Personal configuration of Emacs.
-![Screenshot](emacs.png)
+![Screenshot](screenshot.png)
   
 </div>

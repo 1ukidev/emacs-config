@@ -1,7 +1,7 @@
 <div align="center">
 
 # Emacs configuration
-## Personal configuration of Emacs
+## Minimalist configuration for Emacs
 ![Screenshot](screenshot.png)
   
 </div>
